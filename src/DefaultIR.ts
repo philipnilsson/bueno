@@ -89,7 +89,7 @@ export function mkRenderer<A, Out>(
     if (isEmpty(cond)) {
       return clause(conseq, false, paths, context)
     }
-    const conds = cond.map(ir => clause(ir, true, paths, context))
+    const conds = cond.map(ir => clause(ir, true, paths, { atPath: null }))
     return props.when(clause(conseq, false, paths, context), props.and(conds))
   }
 
@@ -127,12 +127,12 @@ export function mkRenderer<A, Out>(
             const verb =
               pickVerb(group, path, inWhen, i !== 0)
 
-
             const words =
               verb(props.atom(xs, props)).map(x => isString(x)
                 ? props.fromstr(x as string)
                 : x as Out
               )
+
             const hasPath =
               path === context.atPath
 
@@ -170,7 +170,7 @@ export function mkRenderer<A, Out>(
       return ir
     }
     return buildWhen(
-      onlyPath(ir.conseq, path),
+      ir.conseq,
       ir.cond.map(x => onlyPath(x, path)),
     )
   }
@@ -196,10 +196,9 @@ export function mkRenderer<A, Out>(
     } else {
       return fromEntries(
         relevantKeys(ir.conseq).map(path => {
-          const context = { atPath: path }
           return [
             path,
-            render(onlyPath(ir, path), paths, context)
+            render(ir, paths, { atPath: path })
           ] as [string, Out]
         }).concat([['', render(ir, paths, { atPath: null })]])
       )

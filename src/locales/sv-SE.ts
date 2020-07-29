@@ -1,6 +1,5 @@
 import { joinWithCommas, words, capFirst, id, isNumber, deepMerge } from '../utils';
 import { IR, mkRenderer, verb, atom, defaultBuilder, not, at, RenderingOptions } from '../DefaultIR'
-import { MessageBuilder } from 'bueno/locale';
 
 export type Swedish =
   | { k : 'noun_', article_ : '' | 'en' | 'ett', noun_ : string, name_ : string }

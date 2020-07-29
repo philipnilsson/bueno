@@ -1,7 +1,8 @@
-import { emptyLocale, enUS, invalidDate, mkSchemaHaving, alphaNumeric, toString, self, length, object, string, flip, oneOf, toNumber, exactly, either, fix, optional, array, number, boolean, when, even, atMost, atLeast, createSchema, both, email, odd, not, objectExact, objectInexact, defaultTo, pipe, lift, id, chain, updateMessage, path, apply, iterable, toArray, toSet, set, toMap, map, toMapFromObject, toURL, every, some, toDate, emptyString, setMessage, compact, between, check, match, swap, result, optionalTo, pair, any, toJSON } from '../index'
+import { emptyLocale, svSE, enUS, invalidDate, mkSchemaHaving, alphaNumeric, toString, self, length, object, string, flip, oneOf, toNumber, exactly, either, fix, optional, array, number, boolean, when, even, atMost, atLeast, createSchema, both, email, odd, not, objectExact, objectInexact, defaultTo, pipe, lift, id, chain, updateMessage, path, apply, iterable, toArray, toSet, set, toMap, map, toMapFromObject, toURL, every, some, toDate, emptyString, setMessage, compact, between, check, match, swap, result, optionalTo, pair, any, toJSON } from '../index'
 import { Schema_, Schema } from '../types'
 import { parse, parseAsync, unparse } from './run'
 import { MessageBuilder } from 'bueno/locale'
+import { checkPerKey } from '../schema/runners/checkByKey'
 
 describe('schema', () => {
   test('simple parse and serialize / ok', () => {
@@ -1750,5 +1751,21 @@ describe('sans locale', () => {
     ).toEqual(
       'Should be a nice number!'
     )
+  })
+})
+
+describe('sv-SE', () => {
+  test('when', () => {
+    const schema =
+      when(even, atLeast(10), atMost(9))
+
+    expect(check(8, schema, svSE)).toEqual(
+      'Måste vara som minst 10 när jämnt'
+    )
+
+    expect(checkPerKey({ foo: 8 }, object({ foo: schema }), svSE)).toEqual({
+      "": "Foo måste vara som minst 10 när foo är jämnt",
+      foo: 'Måste vara som minst 10 när foo är jämnt'
+    })
   })
 })
