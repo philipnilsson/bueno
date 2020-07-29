@@ -136,13 +136,6 @@ const inputs = <IR>(l : MessageBuilder<IR>) => ({
         l.at('FOO', l.even),
         [l.at('BAR', l.leftOut)]
       )
-    },
-    {
-      name: 'even',
-      input: l.when(
-        l.atLeast(10),
-        [l.even]
-      )
     }
   ],
   having: [

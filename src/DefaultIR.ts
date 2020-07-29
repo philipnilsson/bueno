@@ -170,7 +170,7 @@ export function mkRenderer<A, Out>(
       return ir
     }
     return buildWhen(
-      ir.conseq,
+      onlyPath(ir.conseq, path),
       ir.cond.map(x => onlyPath(x, path)),
     )
   }
