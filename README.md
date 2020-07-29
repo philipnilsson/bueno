@@ -173,7 +173,7 @@ check(schema,  12, enUS)
 // null
 ```
 
-You may prefer using the <a href="#core-structure">call signatures</a>
+You may prefer using the <a href="#core">call signatures</a>
 of schemas over using this combinator.
 
 ### `either`
@@ -230,7 +230,7 @@ Negates a schema. Note that negation only affect the "validation" and
 not the "parsing" part of a schema. Essentially, remember that `not` does not affect
 the type signature of a schema.
 
-For example `not(number)` is the same as just `number`. The reason is
+For example, `not(number)` is the same as just `number`. The reason is
 that we can't really do much with a value that we know only to have
 type "not a number".
 
