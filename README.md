@@ -18,8 +18,9 @@ Install using `npm install --save bueno` or `yarn add bueno`.
 Check out the quickstart section below, or go directly to the <a href="#api-documentation">API docs</a>
 
 <ul>
-  <li><a href="./src/docs/express.md">Usage example with <code>express</code></a></li>
-  <li><a href="./src/docs/formik.md">Usage example with <code>react</code> + <code>formik</code></a></li>
+  <li><a href="./src/docs/form.md">Usage example: Vanilla JS form</a></li>
+  <li><a href="./src/docs/express.md">Usage example: <code>express</code></a></li>
+  <li><a href="./src/docs/formik.md">Usage example: <code>react</code> + <code>formik</code></a></li>
   <li><a href="./src/docs/customizing-errors.md">Customzing error messages</a></li>
 </ul>
 
