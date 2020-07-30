@@ -19,25 +19,25 @@ const inputs =
 const outputs : { [name in keyof TestName]: { [key in TestName[name]]: string } } = {
   messages: {
     'no path':
-      'Darf eine Zahl sein',
+      'Muss eine Zahl sein',
 
     'no path / negated':
       'Darf nicht eine Zahl sein',
 
     'simple path':
-      'Bar darf eine Zahl sein',
+      'Bar muss eine Zahl sein',
 
     'simple path / negated':
       'Bar darf nicht eine Zahl sein',
 
     'or / mixed path':
-      'Darf eine Zahl sein oder bar darf ein Text sein',
+      'Muss eine Zahl sein oder bar muss ein Text sein',
 
     'or / multiple paths':
-      'Baz darf eine Zahl sein oder bar darf ein Text sein',
+      'Baz muss eine Zahl sein oder bar muss ein Text sein',
 
     'or / multiple no path':
-      'Darf eine Zahl oder ein Text sein',
+      'Muss eine Zahl oder ein Text sein',
 
     'or / negated / multiple no path':
       'Darf nicht eine Zahl oder ein Text sein',
@@ -46,23 +46,23 @@ const outputs : { [name in keyof TestName]: { [key in TestName[name]]: string } 
       'Darf nicht eine Zahl oder ein Objekt sein',
 
     'or / multiple same path':
-      'Bar darf eine Zahl, ein Text oder Objekt sein, ' +
-      'baz darf ein Text sein oder baz darf nicht ein Objekt sein',
+      'Bar muss eine Zahl, ein Text oder Objekt sein, ' +
+      'baz muss ein Text sein oder baz darf nicht ein Objekt sein',
 
     'or / multiple different paths':
-      'Barbaz darf eine Zahl oder ein Objekt sein, baz darf wahr oder falsch sein oder baz darf nicht ein Text oder Objekt sein',
+      'Barbaz muss eine Zahl oder ein Objekt sein, baz muss wahr oder falsch sein oder baz darf nicht ein Text oder Objekt sein',
 
     'or / multiple different paths / empty path':
-      'Darf wahr oder falsch sein, darf nicht ein Text oder Objekt sein oder bar darf eine Zahl oder ein Objekt sein',
+      'Muss wahr oder falsch sein, darf nicht ein Text oder Objekt sein oder bar muss eine Zahl oder ein Objekt sein',
 
     'or / multiple different paths / empty path / adjectives':
-      'Darf mehr als 10 oder mehr als 12 sein oder darf nicht weniger als 5 sein',
+      'Muss mehr als 10 oder mehr als 12 sein oder darf nicht weniger als 5 sein',
 
     'at every':
-      'Jedes Element darf mehr als 10 sein',
+      'Jedes Element muss mehr als 10 sein',
 
     'alpha-numeric':
-      'Darf nur aus Buchstaben und Zahlen bestehen'
+      'Muss nur aus Buchstaben und Zahlen bestehen'
   },
   having: {
     'sum':
@@ -72,23 +72,23 @@ const outputs : { [name in keyof TestName]: { [key in TestName[name]]: string } 
       'Muss eine Länge von mindestens 10 haben',
 
     'unexpected keys':
-      'Must nicht unerwarteten Schlüssel foo, bar und baz haben'
+      'Darf nicht unerwarteten Schlüssel foo, bar und baz haben'
   },
   when: {
     'simple':
-      'Darf mehr als 10 sein wenn bar ein Text ist',
+      'Muss mehr als 10 sein wenn bar ein Text ist',
 
     'with disjunctions':
-      'Darf mehr als 10 oder ein Text sein oder Telefonzahl darf eine Zahl sein wenn nicht mehr als 3 oder ein Objekt ist, alt mehr als 18 ist und alt weniger als 65 ist',
+      'Muss mehr als 10 oder ein Text sein oder Telefonzahl muss eine Zahl sein wenn nicht mehr als 3 oder ein Objekt ist, alt mehr als 18 ist und alt weniger als 65 ist',
 
     'when / length':
-      'Darf gerade sein wenn es eine Länge von mindestens 10 hat',
+      'Muss gerade sein wenn es eine Länge von mindestens 10 hat',
 
     'when / between':
-      'Darf gerade sein wenn foobar zwischen 10 und 20 liegt',
+      'Muss gerade sein wenn foobar zwischen 10 und 20 liegt',
 
     'when / left out':
-      'FOO darf gerade sein wenn BAR weggelassen wird'
+      'FOO muss gerade sein wenn BAR weggelassen wird'
   },
 
   custom: {
@@ -116,9 +116,9 @@ describe('by key', () => {
     ])
 
     expect(lang.renderer.byKey(msg(lang.builder), [])).toEqual({
-      "alt": "Darf mehr als 18 sein wenn name nicht weniger als 65 ist und verifiziert nicht \"Ja\" ist",
-      "name": "Darf weniger als 65 sein wenn alt nicht mehr als 18 ist und verifiziert nicht \"Ja\" ist",
-      "verifiziert": "Darf \"Ja\" sein wenn alt nicht mehr als 18 ist und name nicht weniger als 65 ist",
+      "alt": "Muss mehr als 18 sein wenn name nicht weniger als 65 ist und verifiziert nicht \"Ja\" ist",
+      "name": "Muss weniger als 65 sein wenn alt nicht mehr als 18 ist und verifiziert nicht \"Ja\" ist",
+      "verifiziert": "Muss \"Ja\" sein wenn alt nicht mehr als 18 ist und name nicht weniger als 65 ist",
     })
   })
 })

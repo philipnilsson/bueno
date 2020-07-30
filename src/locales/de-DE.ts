@@ -26,7 +26,7 @@ const werden =
 function haben(name : string) : (ir : IR<German>) => IR<German> {
   return verb(
     x => ['muss', name, x, 'haben'],
-    x => ['must nicht', name, x, 'haben'],
+    x => ['darf nicht', name, x, 'haben'],
     x => ['es', name, x, 'hat'],
     x => ['es', 'nicht', name, x, 'hat']
   )

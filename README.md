@@ -41,7 +41,7 @@ const username =
   string(length(atLeast(8)), alphaNumeric)
 
 const age = 
-  number(atLeast(18), not(moreThan(130))
+  number(atLeast(18), not(moreThan(130)))
 
 const user = object({
   id: either(email, username),
@@ -56,14 +56,14 @@ const input = {
 console.log(check(input, user, enUS))
 // 'Age must be at least 18 or left out'
 
-console.log(check(input, user, describePaths(svSE, [['*.age', 'Ålder']])))
+console.log(check(input, user, describePaths(svSE, [['age', 'Ålder']])))
 // 'Ålder måste vara som minst 18'
 
 console.log(checkPerKey(input, user, deDE))
-// { age: 'Måste vara som minst 18' }
+// { age: 'Muss mindestens 18 sein' }
 ```
 
-[Try this example in a Fiddle](https://jsfiddle.net/koavbp0s/1)
+[Try this example in a Fiddle](https://jsfiddle.net/o9urhv3m/2/)
 
 # API documentation
 
