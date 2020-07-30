@@ -1,6 +1,6 @@
 {
   "name": "bueno",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Bueno - composable validators for forms, API:s and more.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -9,12 +9,11 @@
   ],
   "types": "dist/cjs/index.d.ts",
   "scripts": {
-    "build": "yarn clean && rollup -c",
+    "build": "yarn lint && yarn test && yarn clean && yarn build:prod && yarn build:iife",
     "clean": "rm -rf dist cdn",
     "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet --fix",
     "build:iife": "rollup -c rollup.iife.config.js --environment NODE_ENV:production",
     "build:prod": "rollup -c --environment NODE_ENV:production",
-    "build": "yarn lint && yarn test && yarn clean && yarn build:prod && yarn build:iife",
     "pub": "yarn prod && yarn publish",
     "test": "jest",
     "test:watch": "jest --watch",
