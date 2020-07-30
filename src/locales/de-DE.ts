@@ -1,32 +1,27 @@
 import { joinWithCommas, words, capFirst, id, isNumber, deepMerge } from '../utils';
 import { IR, mkRenderer, verb, atom, defaultBuilder, not, at, RenderingOptions } from '../DefaultIR'
-import { MessageBuilder } from 'bueno/locale';
 
 export type German =
   | { k : 'noun_', article_ : '' | 'ein' | 'eine', noun_ : string, name_ : string }
 
-
-const germanVerb = (u : string, v : string, w : string) => verb<any>(
-  x => [u, x, v],
-  x => [u, 'nicht', x, v],
+const germanVerb = (v : string, w : string) => verb<any>(
+  x => ['muss', x, v],
+  x => ['darf nicht', x, v],
   x => [x, w],
   x => ['nicht', x, w]
 )
 
-const darf =
-  germanVerb('darf', 'sein', 'ist')
+const bestehen =
+  germanVerb('bestehen', 'besteht')
 
-const darfBestehen =
-  germanVerb('darf', 'bestehen', 'besteht')
+const sein =
+  germanVerb('sein', 'ist')
 
-const mussSein =
-  germanVerb('muss', 'sein', 'ist')
+const liegen =
+  germanVerb('liegen', 'liegt')
 
-const mussLiegen =
-  germanVerb('muss', 'liegen', 'liegt')
-
-const mussWerden =
-  germanVerb('muss', 'werden', 'wird')
+const werden =
+  germanVerb('werden', 'wird')
 
 function haben(name : string) : (ir : IR<German>) => IR<German> {
   return verb(
@@ -38,18 +33,18 @@ function haben(name : string) : (ir : IR<German>) => IR<German> {
 }
 
 function eine(noun_ : string, name_ : string) : IR<German> {
-  return darf(atom({ article_: 'eine', noun_, k: 'noun_', name_ }))
+  return sein(atom({ article_: 'eine', noun_, k: 'noun_', name_ }))
 }
 
 function ein(noun_ : string, name_ : string) : IR<German> {
-  return darf(atom({ article_: 'ein', noun_, k: 'noun_', name_ }))
+  return sein(atom({ article_: 'ein', noun_, k: 'noun_', name_ }))
 }
 
 const germanBuilder = {
 
   ...defaultBuilder,
 
-  mustBe: darf,
+  mustBe: sein,
 
   mustHave: haben(''),
 
@@ -64,37 +59,37 @@ const germanBuilder = {
   },
 
   more<A>(n : A) {
-    return darf(`mehr als ${n}`, 'more');
+    return sein(`mehr als ${n}`, 'more');
   },
 
   less<A>(n : A) {
-    return darf(`weniger als ${n}`, 'less');
+    return sein(`weniger als ${n}`, 'less');
   },
 
   atLeast<A>(lb : A) {
-    return darf(`mindestens ${lb}`, 'atLeast')
+    return sein(`mindestens ${lb}`, 'atLeast')
   },
 
   between<A>(lb : A, ub : A) {
-    return mussLiegen(`zwischen ${lb} und ${ub}`, 'between')
+    return liegen(`zwischen ${lb} und ${ub}`, 'between')
   },
 
   atMost<A>(ub : A) {
-    return mussSein(`höchstens ${ub}`, 'atMost')
+    return sein(`höchstens ${ub}`, 'atMost')
   },
 
   oneOf<A>(choices : A[]) {
     if (choices.length === 1) {
-      return darf(`${choices[0]}`, 'oneOf')
+      return sein(`${choices[0]}`, 'oneOf')
     }
-    return darf(
+    return sein(
       `einer von ${joinWithCommas(choices.map(x => `${x}`), 'o')}`,
       'oneOf'
     )
   },
 
   exactly<A>(target : A) {
-    return darf(`${target}`, 'exactly')
+    return sein(`${target}`, 'exactly')
   },
 
   keys(keys : string[]) {
@@ -107,21 +102,21 @@ const germanBuilder = {
 
   email: eine('gültige E-Mail-Adresse', 'email'),
 
-  alphanum: darfBestehen('nur aus Buchstaben und Zahlen', 'alphanum'),
+  alphanum: bestehen('nur aus Buchstaben und Zahlen', 'alphanum'),
 
   uuid: ein('UUID', 'uuid'),
 
   url: eine('gültige URL', 'url'),
 
-  even: darf('gerade', 'even'),
+  even: sein('gerade', 'even'),
 
-  odd: darf('ungerade', 'odd'),
+  odd: sein('ungerade', 'odd'),
 
-  empty: darf('leer', 'empty'),
+  empty: sein('leer', 'empty'),
 
   date: ein('gültiges Datum', 'date'),
 
-  iterable: darf('iterable', 'iterable'),
+  iterable: sein('iterable', 'iterable'),
 
   array: eine('Liste', 'array'),
 
@@ -131,7 +126,7 @@ const germanBuilder = {
 
   map: eine('Abbildung', 'map'),
 
-  bool: deepMerge([darf('wahr'), darf('falsch')]),
+  bool: deepMerge([sein('wahr'), sein('falsch')]),
 
   number: eine('Zahl', 'number'),
 
@@ -139,7 +134,7 @@ const germanBuilder = {
 
   object: ein('Objekt', 'object'),
 
-  leftOut: mussWerden('weggelassen'),
+  leftOut: werden('weggelassen'),
 
   json: ein('gültiges JSON-Objekt', 'json')
 }

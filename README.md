@@ -13,7 +13,8 @@ more on the way.  <a href="./src/docs/languages.md">Learn more</a>
 
 # Try it out
 
-You can check out `bueno` directly in the browser in this [jsfiddle](https://jsfiddle.net/gm1pbk3e/11/).
+You can check out `bueno` directly in the browser in this
+[jsfiddle](https://jsfiddle.net/gm1pbk3e/11/).
 
 # Installation
 
@@ -34,7 +35,7 @@ Check out the quickstart section below, or go directly to the <a href="#api-docu
 schemas. Here's how it looks in action:
 
 ```typescript
-import { alphaNumeric, atLeast, check, either, email, enUS, length, moreThan, number, optional, string, svSE } from 'bueno'
+import { alphaNumeric, atLeast, check, checkPerKey, deDE, describePaths, either, email, enUS, length, moreThan, not, number, object, optional, string, svSE } from 'bueno'
 
 const username = 
   string(length(atLeast(8)), alphaNumeric)
@@ -52,12 +53,17 @@ const input = {
   age: 17 
 }
 
-check(input, user, enUS)
+console.log(check(input, user, enUS))
 // 'Age must be at least 18 or left out'
 
-checkPerKey(input, user, describePath(svSE, { age: 'ålder' }))
-// { age: 'Ålder måste vara som minst 18 eller utlämnad' }
+console.log(check(input, user, describePaths(svSE, [['*.age', 'Ålder']])))
+// 'Ålder måste vara som minst 18'
+
+console.log(checkPerKey(input, user, deDE))
+// { age: 'Måste vara som minst 18' }
 ```
+
+[Try this example in a Fiddle](https://jsfiddle.net/koavbp0s/1)
 
 # API documentation
 
