@@ -1,4 +1,5 @@
 dist
+cdn
 node_modules
 TODO.org
 yarn-error.log

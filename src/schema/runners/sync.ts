@@ -1,9 +1,5 @@
 import { Action } from '../../action'
 
-declare global {
-  const IS_DEV : boolean
-}
-
 export function sync<A, B extends any[]>(
   a : (...args : B) => Action<A>
 ) : (...args : B) => A {

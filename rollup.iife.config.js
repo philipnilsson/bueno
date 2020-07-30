@@ -3,22 +3,12 @@ import { terser } from 'rollup-plugin-terser'
 import replace from 'rollup-plugin-replace'
 
 export default {
-  input: __dirname + '/src/index.ts',
+  input: __dirname + '/src/iife.ts',
   
-  output: [
-    {
-      sourcemap: true,
-      dir: "dist/esm",
-      format: 'esm',
-    },
-    {
-      sourcemap: true,
-      dir: "dist/cjs",
-      format: 'cjs',
-    },
-  ],
-  
-  preserveModules: true,
+  output: {
+    file: "cdn/bueno.min.js",
+    format: 'iife',
+  },
   
   plugins: [
     typescript({
@@ -44,8 +34,8 @@ export default {
       'shouldBe_': 'S',
       'verbs_': 'V',
       'disj_': 'C',
-      'IS_DEV': 'process.env.NODE_ENV !== "production"'
+      'IS_DEV': 'false'
     }),
-    process.env.NODE_ENV === 'production' && terser(),
+    terser(),
   ],
 }

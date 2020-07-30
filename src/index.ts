@@ -1,3 +1,7 @@
+declare global {
+  const IS_DEV : boolean
+}
+
 export { any } from './schema/any'
 export { apply } from './schema/apply'
 export { alphaNumeric } from './schema/alphaNumeric'

@@ -11,6 +11,10 @@ error messages in multiple languages supported out of the box, with
 more on the way.  <a href="./src/docs/languages.md">Learn more</a>
 </p> <p> ⏱ Asynchronous (when needed!)  </p>
 
+# Try it out
+
+You can check out `bueno` directly in the browser in this [jsfiddle](https://jsfiddle.net/gm1pbk3e/11/).
+
 # Installation
 
 Install using `npm install --save bueno` or `yarn add bueno`.

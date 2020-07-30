@@ -10,9 +10,11 @@
   "types": "dist/cjs/index.d.ts",
   "scripts": {
     "build": "yarn clean && rollup -c",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist cdn",
     "lint": "eslint './src/**/*.{js,ts,tsx}' --quiet --fix",
-    "prod": "yarn test && yarn clean && rollup -c --environment NODE_ENV:production",
+    "build:iife": "rollup -c rollup.iife.config.js --environment NODE_ENV:production",
+    "build:prod": "rollup -c --environment NODE_ENV:production",
+    "build": "yarn lint && yarn test && yarn clean && yarn build:prod && yarn build:iife",
     "pub": "yarn prod && yarn publish",
     "test": "jest",
     "test:watch": "jest --watch",
