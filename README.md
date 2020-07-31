@@ -33,7 +33,7 @@ Check out the quickstart section below, or go directly to the <a href="#api-docu
   <li><a href="./src/docs/form.md">Usage example: Vanilla JS form</a></li>
   <li><a href="./src/docs/express.md">Usage example: <code>express</code></a></li>
   <li><a href="./src/docs/formik.md">Usage example: <code>react</code> + <code>formik</code></a></li>
-  <li><a href="./src/docs/customizing-errors.md">Customzing error messages</a></li>
+  <li><a href="./src/docs/customizing-errors.md">Customizing error messages</a></li>
 </ul>
 
 # Quickstart
@@ -243,7 +243,7 @@ that we can't really do much with a value that we know only to have
 type "not a number".
 
 ```typescript
-const schmea = 
+const schema = 
   number(not(moreThan(100)))
 
 check(103, schema, enUS)
@@ -1184,7 +1184,7 @@ const schema =
 
 ### `Action`
 
-An `Action<A>` is either an `A` or a `Promise<A>`. A schema returing a
+An `Action<A>` is either an `A` or a `Promise<A>`. A schema returning a
 `Promise` will be asynchronous.
 
 
