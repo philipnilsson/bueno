@@ -2,14 +2,21 @@
 <img src="./src/docs/logo.png" width="300px" />
 <br />
 
-A tiny, composable validation library for forms, APIs & more. You'll like if if you need something
+A tiny, composable validation library. Bueno primary aims to be an
+improvement on form validation libraries like
+[`yup`](https://github.com/jquense/yup) and
+[`superstruct`](https://github.com/ianstormtaylor/superstruct), but
+can also be used as a lightweight API validation library. You'll like
+it if you need something
 
-<p> 🌳 Small & <a href="https://webpack.js.org/guides/tree-shaking/">tree-shakeable</a>.  </p> <p> 💡 Expressive! Use full
-boolean logic to compose your schemas </p> <p> 💫 Bidirectional. <a
-href="./src/docs/bidirectional.md">Learn more</a> </p> <p> 🚀 Awesome
-error messages in multiple languages supported out of the box, with
-more on the way.  <a href="./src/docs/languages.md">Learn more</a>
-</p> <p> ⏱ Asynchronous (when needed!)  </p>
+<p> 🌳 Small & <a
+href="https://webpack.js.org/guides/tree-shaking/">tree-shakeable</a>.
+</p> <p> 💡 Expressive! Use full boolean logic to compose your schemas
+</p> <p> 💫 Bidirectional. <a href="./src/docs/bidirectional.md">Learn
+more</a> </p> <p> 🚀 Awesome error messages in multiple languages
+supported out of the box, with more on the way.  <a
+href="./src/docs/languages.md">Learn more</a> </p> <p> ⏱ Asynchronous
+(when needed!)  </p>
 
 # Try it out
 
