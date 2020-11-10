@@ -1,6 +1,6 @@
 {
   "name": "bueno",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Bueno - composable validators for forms, API:s and more.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
