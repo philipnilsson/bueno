@@ -758,7 +758,15 @@ describe('self', () => {
       errorsByKey: {
         email: 'Must be a valid email address',
       },
+    })
+  })
 
+  test('self reference in errors', () => {
+    const validator = object({
+      email: self<string>(address => setMessage(email, `${address} is not a valid email`))
+    })
+    expect(parse({ email: 'foo@bar' }, validator, enUS).errorsByKey).toEqual({
+      email: 'Foo@bar is not a valid email',
     })
   })
 })
@@ -1746,6 +1754,7 @@ describe('sans locale', () => {
   test('using {} as locale when providing a custom error', () => {
     const schema =
       setMessage(number, 'Should be a nice number!')
+
     expect(
       check('foo' as any, schema, emptyLocale)
     ).toEqual(
