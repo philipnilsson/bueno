@@ -1,4 +1,4 @@
-import { Schema_, Parser, ParseResult } from "../types"
+import { Schema_, Parser, ParseResult, Schema } from "../types"
 import { Message } from 'bueno/locale'
 import { mkSchema } from "./factories/mkSchema"
 import { mkParserCallable } from "./factories/core"
@@ -29,7 +29,7 @@ export function updateMessageP<A, B>(
 
 export function updateMessage<A, B>(
   f : (m : Message) => (string | Message),
-  v : Schema_<A, B>,
+  v : Schema<A, B>,
 ) : Schema_<A, B> {
   return mkSchema(
     updateMessageP(f, v.parse_),
